@@ -36,7 +36,9 @@
 
 &emsp;&emsp;模型**PA=0.979, IoU=0.952**，分割效果较好，如下图所示，详情见[基于Paddle和U-Net的自动驾驶道路分割 - 飞桨AI Studio](https://aistudio.baidu.com/aistudio/projectdetail/4345002)
 
-![1-识别结果](.\images\1-识别结果.png)
+<center>
+ <img src=".\images\1-识别结果.png" width="600">
+</center>
 
 ## 二、基于PP-YOLOv2的交通标志检测与识别
 
@@ -54,7 +56,9 @@
 
 ## 三、网页/软件控制小车运动
 
-![思维导图](.\images\思维导图.png)
+<center>
+ <img src=".\images\思维导图.png">
+</center>
 
 ### 3.1驱动开发
 
@@ -63,38 +67,51 @@
 <center>
  <img src=".\images\小车结构.png" width="700">
 </center>
-
 &emsp;&emsp;通过设置频率，信号通道，分辨率等数值，再将引脚和通道进行绑定，根据小车电机连接管脚，设置输出管脚与输入管脚，通过写入占空比的方式控制小车前进或后退，小车的左转右转需要在小车前进的过程中使用舵机调整角度，舵机同样通过写入pwm信号对角度进行控制，最终将小车前进、后退、左转、右转四个动作分别封装成一个函数以便后期调用。以下是控制小车舵机的例子：
 
-![第三部分驱动开发舵机代码](.\images\第三部分驱动开发舵机代码.jpg)
+<center>
+ <img src=".\images\第三部分驱动开发舵机代码.jpg">
+</center>
 
 &emsp;&emsp;通过导入WIFI和webServer两个头文件，调用相关函数将事先设置的WIFI名称和密码进行配置，通过串口输出IP地址以便下一步网站的实现。
 
-![第三部分驱动开发Wifi代码](.\images\第三部分驱动开发WiFi代码.jpg)
+<center>
+ <img src=".\images\第三部分驱动开发WiFi代码.jpg">
+</center>
 
 ### 3.2网页控制小车
 
 &emsp;&emsp;通过编写前端代码实现前端网页以实现向小车端发送请求，利用server.send(),server.on(),server.begin()三个函数实现网站的部署以及小车端对于网页传来请求的接收，通过接收网站的请求，小车调用相关函数从而实现小车前进，后退，转弯等一系列操作以及对旋转角度运动速度的调整从而实现网页控制小车运动。以下是部分代码展示：
 
-![第三部分前端设计](.\images\第三部分前端设计.jpg)
+<center>
+ <img src=".\images\第三部分前端设计.jpg">
+</center>
 
 网页界面的展示：
 
-![网页界面](.\images\网页界面.jpg)
+<center>
+ <img src=".\images\网页界面.jpg">
+</center>
 
 ### 3.3程序控制小车
 
 &emsp;&emsp;此外，我们使用Tkinter作为UI的开发工具，用CustomTKinter库作为设计辅助，开发了**基于Python用于小车控制的UI界面**，通过python的requests模块收发http请求，上述功能均可在其中实现，且可以进一步**封装为软件使用**。
 
-![ui开发](.\images\UI开发.jpg)
+<center>
+ <img src=".\images\UI开发.jpg">
+</center>
 
-![UI界面](.\images\UI界面.png)
+<center>
+ <img src=".\images\UI界面.png">
+</center>
 
 ## 四、小车自动驾驶、识别交通标志
 
 **小车自动驾驶整体算法逻辑**：
 
-![4-算法逻辑](.\images\4-算法逻辑.png)
+<center>
+ <img src=".\images\4-算法逻辑.png">
+</center>
 
 ### 4.1.1 道路分割模型训练及调用
 
@@ -115,7 +132,9 @@
 
 一般情况，两轴不互相垂直
 
-![4-两坐标轴互相垂直2](.\images\4-两坐标轴互相垂直2.png)
+<center>
+ <img src=".\images\4-两坐标轴互相垂直2.png">
+</center>
 
 $$
 u=u_{0}+\frac{x_{d}}{d x}-\frac{y_{d} \cot \theta}{d x}
@@ -133,7 +152,9 @@ $$
 
 ##### 2）相机坐标系$(X_c,Y_c,Z_c)$至图像坐标系$(x,y)$
 
-![4-两坐标轴互相垂直3](.\images\4-两坐标轴互相垂直3.png)
+<center>
+ <img src=".\images\4-两坐标轴互相垂直3.png">
+</center>
 
 &emsp;&emsp;根据小孔成像原理，图像坐标系应在相机坐标系的另一边，为倒立反向成像，但为方便理解和计算，故投影至同侧。
 
@@ -145,7 +166,9 @@ $$
 
 ##### 3）世界坐标系$(X_w,Y_w,Z_w)$至相机坐标系$(X_c,Y_c,Z_c)$
 
-![4-两坐标轴互相垂直4](.\images\4-两坐标轴互相垂直4.png)
+<center>
+ <img src=".\images\4-两坐标轴互相垂直4.png">
+</center>
 
 $$
 \left[\begin{array}{c}X_{c} \\ Y_{c} \\ Z_{c} \\ 1\end{array}\right]=\left[\begin{array}{cc}R_{3 \times 3} & T_{3 \times 1} \\ O & 1\end{array}\right] \cdot\left[\begin{array}{c}X_{w} \\ Y_{w} \\ Z_{w} \\ 1\end{array}\right]
@@ -153,7 +176,9 @@ $$
 
 ##### 4）合并公式
 
-![4-两坐标轴互相垂直5](.\images\4-两坐标轴互相垂直5.png)
+<center>
+ <img src=".\images\4-两坐标轴互相垂直5.png">
+</center>
 
 $$
 Z_{c}\left[\begin{array}{c}u \\ v \\ 1\end{array}\right]=\left[\begin{array}{ccc}\frac{f}{S_{x}} & r & u_{0} \\ 0 & \frac{f}{S_{y}} & v_{0} \\ 0 & 0 & 1\end{array}\right]\left[\begin{array}{cc}R_{3,3} & T_{3,1} \\ O & 1\end{array}\right]\left[\begin{array}{c}X_{\pi} \\ Y_{\pi} \\ Z_{\pi} \\ 1\end{array}\right]=K_{3,3}\left[\begin{array}{cc}R_{3,3} & T_{3,1} \\ O & 1\end{array}\right]\left[\begin{array}{c}X_{\pi} \\ Y_{\pi} \\ Z_{\pi} \\ 1\end{array}\right]
@@ -186,7 +211,9 @@ $\left[\begin{array}{ccc}252.8988 & 0 & 409.2385 & 0 \\ 0 & 252.9924 & 299.7036 
 
 &emsp;&emsp;实际的相机为了获得更好的成像效果，通常会在相机前方加入透镜，透镜的加入会使得光线传播受到影响，即真实世界的直线在图像中变成了曲线，这种叫径向畸变。径向畸变又分为桶形畸变和枕形畸变。
 
-![畸变](D:\我的\作业\科研实训（2）\三四部分\说明文档\images\畸变.png)
+<center>
+ <img src=".\images\畸变.png">
+</center>
 
 &emsp;&emsp;径向畸变可以看做坐标点沿长度方向发生了变化，即坐标点距离原点距离变了。通常使用的模型如下，假设畸变成多项式关系，使用4个参数$k_1, k_2, k_3, k_4$表达畸变：
 
@@ -201,7 +228,9 @@ $$
 
 &emsp;&emsp;将相机拍摄图片的分割结果转换为俯视图，需要进行透视变换，透视变换通用的变换公式为：
 
-![透视变换](.\images\透视变换.jpg)
+<center>
+ <img src=".\images\透视变换.jpg">
+</center>
 
 $$
 \left[x^{\prime}, y^{\prime}, w^{\prime}\right]=[u, v, w]\left[\begin{array}{lll}a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33}\end{array}\right]
@@ -270,11 +299,15 @@ $$
 
 ​	当“开启列表”中没有了数据，则说明没有合适路径
 
-![Astar2](.\images\Astar2.png)
+<center>
+ <img src=".\images\Astar2.png">
+</center>
 
 根据4.1.3中俯视图进行A*算法路径规划，得到行驶路径：
 
-![道路分割3](.\images\道路分割3.png)
+<center>
+ <img src=".\images\道路分割3.png">
+</center>
 
 ### 4.1.5 阿克曼转向几何与Pure Pursuit路径跟踪算法
 
